@@ -1,0 +1,66 @@
+.about{
+    background-color: #3D464D !important;
+    height: 60px;
+    border-radius: 3px;
+    margin-top: 3px;
+    padding-top: 11px;
+}
+
+.pre{
+    box-shadow: 10px 10px 10px #e4e9ef, -10px -10px 10px #fefefe;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.form__input {
+
+border-radius: 8px;
+box-shadow: inset 2px 2px 4px #e4e9ef, inset -2px -2px 4px #fefefe;
+}
+
+.card-header{
+    background-color: #284349;
+}
+
+
+.post{
+    transition: 0.5s;
+}
+
+.post:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 0.325rem 0.75rem rgb(0 0 0 / 8%) !important;
+}
+
+#password{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    letter-spacing: 0.1ch;
+}
+
+.input-group-append > .input-group { 
+align-items: center;
+padding: 0.375rem 0.75rem;
+margin-bottom: 0;
+font-size: 1rem;
+line-height: 1.5;
+text-align: center;
+margin-left: -45px;
+cursor: pointer;
+}
+
+.custom > a {
+    padding: 8px;
+}
+
+.head > .dropdown-menu > li > a{
+    color: #3D464D     !important;
+}
+
+.head1 > button > a{
+    color: #3D464D     !important;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cart > #style{
+    width: 150px;
+}
