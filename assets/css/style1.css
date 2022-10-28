@@ -68,3 +68,7 @@ cursor: pointer;
 .cont > th,td{
     vertical-align: middle  !important;
 }
+
+.mote > a{
+    color: black !important;
+}

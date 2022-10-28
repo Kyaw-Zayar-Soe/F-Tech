@@ -148,7 +148,7 @@
                     foreach ($result as $row) {
                     $tip++;
                 ?>
-                <div class="card rounded m-4 border-light">
+                <div class="card shadow-lg rounded m-4 border-light">
                     <div class="d-flex justify-content-between p-2 text-dark flex-column flex-lg-row">
                         <span>PaymentID#<?php echo $row['payment_id'] ;?></span>
                         <span>

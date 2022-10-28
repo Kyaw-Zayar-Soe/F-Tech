@@ -84,7 +84,7 @@
     <!-- Featured End -->
 
     
-    <!-- Categories Start -->
+    <!-- Brands Start -->
     <div class="container-fluid py-2 mb-5 pt-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 h4"><span class="bg-secondary pr-3">Brands</span></h2>
         <div class="row px-xl-5 pt-3">
@@ -121,5 +121,5 @@
             </div>
         </div>
     </div>
-    <!-- Categories End -->
+    <!-- Brands End -->
 

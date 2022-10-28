@@ -148,6 +148,7 @@
                         <div class="form-group col-md-6">
                             <label for=""><i class="feather-mail text-primary"></i> Region :</label>
                                 <select name="sregion" class="form-control" >
+                                    <option value="0" selected disabled>Select Region</option>
                                     <?php
                                         $statement = $conn->prepare("SELECT * FROM region");
                                         $statement->execute();

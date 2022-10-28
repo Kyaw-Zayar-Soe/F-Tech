@@ -26,7 +26,7 @@
                     $error_message .= "Passwords do not match".'<br>';
                 } else {
                         $_SESSION['customer'] = $row;
-                        header("location: ".BASE_URL."dashboard.php");
+                        header("location: ".BASE_URL."index.php");
                 }
                 
             }
@@ -68,7 +68,7 @@
                             </div>                   
                          </div> 
                     <div class="form-group">
-                        <a href="forget_password.php" class="text-danger">Forget Password?</a>
+                        <a href="#" class="text-danger">Forget Password?</a>
                     </div>
                     <div class="form-group mb-0">
                         <button class="btn btn-primary rounded" name="signBtn"><i class="feather-log-in text-dark"></i> Sign In</button>

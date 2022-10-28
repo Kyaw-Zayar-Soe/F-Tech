@@ -300,7 +300,7 @@
         </div>
 
         <div class="col-12 col-xl-5">
-            <div class="card overflow-hidden mb-4" onclick="go('<?php echo $url.'/'.ADMIN_URL; ?>product_detail.php')">
+            <div class="card overflow-hidden mb-4" onclick="go('<?php echo $url.'/'.ADMIN_URL; ?>product.php')">
                 <div class="">
                     <div class="d-flex justify-content-between align-items-center p-3">
                         <p class="mb-0">Product Viewer</p>

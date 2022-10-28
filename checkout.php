@@ -56,10 +56,10 @@
                                         $statement->execute(array($_SESSION['customer']['customer_b_region']));
                                         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
                                         foreach ($result as $row) {
-                                             $row['region_name'];
+                                             $ret = $row['region_name'];
                                         }
                                     ?>
-                                <input type="text" name="bregion" id="" value="<?php echo $row['region_name'] ?>" class=" form-control" disabled>
+                                <input type="text" name="bregion" id="" value="<?php echo @$ret; ?>" class="form-control" disabled>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for=""><i class="feather-mail text-primary"></i> City :</label>
@@ -108,7 +108,7 @@
                                              $row['region_name'];
                                         }
                                     ?>
-                                <input type="text" name="bregion" id="" value="<?php echo $row['region_name'] ?>" class=" form-control" disabled>
+                                <input type="text" name="bregion" id="" value="<?php echo @$row['region_name']; ?>" class="form-control" disabled>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for=""><i class="feather-mail text-primary"></i> City :</label>
@@ -193,7 +193,14 @@
                         ?>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">$<?php echo $shipping_cost; ?></h6>
+                            <h6 class="font-weight-medium">$
+                                <?php 
+                                    if(empty($shipping_cost)):
+                                        $shipping_cost =  0;
+                                    else:
+                                        echo $shipping_cost;
+                                    endif;
+                                ?>
                         </div>
                     </div>
                     <div class="pt-2">
@@ -262,7 +269,6 @@
                                         <input type="submit" class="btn btn-primary" value="<?php echo "Pay Now"; ?>" name="form1">
                                     </div>
                                 </form>
-
                                 
                             </div>
                                 

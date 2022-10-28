@@ -58,8 +58,8 @@
                         </thead>
                         <tbody>
                             <?php
-                                $statement = $conn->prepare("SELECT * FROM payment WHERE customer_email=? ORDER BY id DESC");
-                                $statement->execute(array($_SESSION['customer']['customer_email']));    
+                                $statement = $conn->prepare("SELECT * FROM payment WHERE customer_email=? && shipping_status=? ORDER BY id DESC LIMIT 2");
+                                $statement->execute(array($_SESSION['customer']['customer_email'],"Completed"));    
                                 $result = $statement->fetchAll(PDO::FETCH_ASSOC);
                                 foreach ($result as $us) {
                             ?>

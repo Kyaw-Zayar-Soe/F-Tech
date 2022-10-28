@@ -7,7 +7,7 @@ $error_message = '';
 
 	$paypal_email = "megahito@gmail.com";
 
-$return_url = 'payment_success.php';
+$return_url = "payment_success.php";
 $cancel_url = 'payment.php';
 $notify_url = 'payment/paypal/verify_process.php';
 
@@ -43,7 +43,7 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	$querystring .= "notify_url=".urlencode($notify_url);
 	
 	// Append querystring with custom field
-	//$querystring .= "&custom=".USERID;
+	//$querystring .= "&custom=".USERID;	
 
 	$statement = $conn->prepare("INSERT INTO payment (
 						customer_id,

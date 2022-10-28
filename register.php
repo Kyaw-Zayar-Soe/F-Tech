@@ -129,7 +129,7 @@
             unset($_POST['email']);
             unset($_POST['phone']);
             unset($_POST['address']);
-            $success_message = "Your registration is completed. Please check your email address to follow the process to confirm your registration.";
+            $success_message = "Your registration is completed.";
         }
     }
 ?>

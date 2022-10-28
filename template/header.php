@@ -163,7 +163,7 @@ foreach ($result as $row) {
                                 <a href="" class="dropdown-item">Computer</a>
                             </div>
                         </div> -->
-                        <a href="shop.php?id=<?php echo $row['category_id']; ?>&type=cat" class="nav-item nav-link"><?php echo $row['category_name']; ?></a>
+                        <a href="shop.php?id=<?php echo $row['category_id']; ?>&type=cat&order_by=product_name" class="nav-item nav-link"><?php echo $row['category_name']; ?></a>
 					<?php
 						}
 					?>

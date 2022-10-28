@@ -48,8 +48,8 @@
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
                 <a class="breadcrumb-item text-dark" href="index.php">Home</a>
-                <a class="breadcrumb-item text-dark" href="#">Shop</a>
-                <span class="breadcrumb-item active">Shop List</span>
+                <a class="breadcrumb-item text-dark">Shop List</a>
+                <span class="breadcrumb-item active"><?php echo $title;?></span>
             </nav>
         </div>
     </div>
@@ -61,7 +61,7 @@
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->
         <div class="col-lg-3 col-md-4">
-            <!-- Price Start -->
+            <!-- Price Start
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span></h5>
             <div class="bg-light p-4 mb-30">
                 <form>
@@ -96,43 +96,34 @@
                         <span class="badge border font-weight-normal">168</span>
                     </div>
                 </form>
-            </div>
+            </div> -->
             <!-- Price End -->
             
             <!-- Color Start -->
-            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by color</span></h5>
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by brand</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" checked id="color-all">
-                        <label class="custom-control-label" for="price-all">All Color</label>
-                        <span class="badge border font-weight-normal">1000</span>
+                <form class="">
+                    <?php 
+                        $statement = $conn->prepare("SELECT * FROM brands");
+                        $statement->execute();
+                        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+                        foreach($result as $row){
+                    ?>
+                    <div class="custom-control mote custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <a href="<?php echo $url; ?>/shop.php?id=<?php echo $_REQUEST['id'];?>&type=cat&type=cat&order_by=product_name&brand=<?php echo $row['brand_id'];?>" class="">
+                            <input type="checkbox" class="custom-control-input" <?php echo isset($_REQUEST['brand'])? $_REQUEST['brand']==$row['brand_id']?'checked':'' :''; ?>  id="color-all">
+                            <label class="custom-control-label" for="price-all"><?php echo $row['brand_name'] ?></label>
+                        </a>
+                        <span class="badge border font-weight-normal">
+                            <?php 
+                                $statement = $conn->prepare("SELECT * FROM products WHERE brand_id=?");
+                                $statement->execute(array($row['brand_id']));
+                                $ret = $statement->rowCount();
+                                echo $ret;
+                            ?>
+                        </span>
                     </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="color-1">
-                        <label class="custom-control-label" for="color-1">Black</label>
-                        <span class="badge border font-weight-normal">150</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="color-2">
-                        <label class="custom-control-label" for="color-2">White</label>
-                        <span class="badge border font-weight-normal">295</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="color-3">
-                        <label class="custom-control-label" for="color-3">Red</label>
-                        <span class="badge border font-weight-normal">246</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="color-4">
-                        <label class="custom-control-label" for="color-4">Blue</label>
-                        <span class="badge border font-weight-normal">145</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="color-5">
-                        <label class="custom-control-label" for="color-5">Green</label>
-                        <span class="badge border font-weight-normal">168</span>
-                    </div>
+                    <?php } ?>
                 </form>
             </div>
             <!-- Color End -->
@@ -154,8 +145,9 @@
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sorting</button>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="shop.php?id=<?php echo $_REQUEST['id'];?>&type=cat">Latest</a>
-                                    <a class="dropdown-item" href="shop.php?id=<?php echo $_REQUEST['id'];?>&type=cat&order_by=total_view">Popularity</a>
+                                    <a class="dropdown-item menu-link" href="<?php echo $url; ?>/shop.php?id=<?php echo $_REQUEST['id'];?>&type=cat&order_by=product_name">Default</a>
+                                    <a class="dropdown-item menu-link" href="<?php echo $url; ?>/shop.php?id=<?php echo $_REQUEST['id'];?>&type=cat&order_by=product_id">Latest</a>
+                                    <a class="dropdown-item menu-link" href="<?php echo $url; ?>/shop.php?id=<?php echo $_REQUEST['id'];?>&type=cat&order_by=total_view">Popularity</a>
                                 </div>
                             </div>
                         </div>
@@ -184,15 +176,18 @@
                         echo '<div class="h4 ml-5 pl-4">'."No product found".'</div>';
                     } else {
                         for($i=0;$i<count($final_category_id);$i++) {
-                            if(isset($_REQUEST['order_by'])){
+                            if(isset($_REQUEST['order_by']) || isset($_REQUEST['brand'])){
                                 $ordercol = $_REQUEST['order_by'];
-                                $statement = $conn->prepare("SELECT * FROM products WHERE category_id=? ORDER BY $ordercol DESC");
-                                $statement->execute(array($final_category_id[$i]));
-                                $result22 = $statement->fetchAll(PDO::FETCH_ASSOC);
-                            }else{
-                                $statement = $conn->prepare("SELECT * FROM products WHERE category_id=? ORDER BY product_id DESC");
-                                $statement->execute(array($final_category_id[$i]));
-                                $result22 = $statement->fetchAll(PDO::FETCH_ASSOC);
+                                if(isset($_REQUEST['brand'])){
+                                    $brandid = $_REQUEST['brand'];
+                                    $statement = $conn->prepare("SELECT * FROM products WHERE category_id=? && brand_id=? ORDER BY $ordercol DESC");
+                                    $statement->execute(array($final_category_id[$i],$brandid));
+                                    $result22 = $statement->fetchAll(PDO::FETCH_ASSOC);
+                                }else{
+                                    $statement = $conn->prepare("SELECT * FROM products WHERE category_id=? ORDER BY $ordercol DESC");
+                                    $statement->execute(array($final_category_id[$i]));
+                                    $result22 = $statement->fetchAll(PDO::FETCH_ASSOC);
+                                }
                             }
                             
                             foreach ($result22 as $row) {
