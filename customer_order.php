@@ -19,15 +19,6 @@
                    <?php include "customer_profile_sidebar.php";?>
 
         <div class="col-xl-9 bg-secondary shadow-lg col-10 ">
-                <?php 
-                    $statement = $conn->prepare("SELECT * FROM payment");
-                    $statement->execute();
-                    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-                    foreach($result as $row){
-                        $mail = $row['customer_email'];
-                    }
-                    if($_SESSION['customer']['customer_email'] == $mail ){
-                ?>
                 <?php
                     if($error_message != '') {
                         echo '<div class="error alert alert-warning">' . $error_message . '</div>';
@@ -140,9 +131,19 @@
                                            </li>";
                         $pagination.= "</ul></nav>\n";       
                     } 
+                    
                     /* ===================== Pagination Code Ends ================== */
                 ?>
                 <?php
+                                                if(!$total_pages){
+
+                                                    echo '<div class="card rounded mt-4 mb-4">
+                                                    <div class="card-body text-center font-weight-bold">'
+                                                        . "No order items found" .
+                                                    '</div>
+                                                  </div>';
+                                                }else{
+                            
                     $tip = $page*10-10;
                     foreach ($result as $row) {
                     $tip++;
@@ -188,15 +189,9 @@
             <div class="pagination justify-content-center" style="overflow: hidden;">
                         <?php 
                             echo $pagination; 
+                            }   
                         ?>
             </div>
-           <?php } else{
-                echo '<div class="card rounded mt-4 mb-4">
-                        <div class="card-body text-center font-weight-bold">'
-                            . "No order items found" .
-                        '</div>
-                      </div>';
-           }?>
         </div>
 
     </div>

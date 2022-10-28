@@ -85,6 +85,8 @@
                                             $statement->execute(array($row['product_id']));
                                             $total = $statement->rowCount();
                                             echo $total;
+                                            $statement = $conn->prepare("UPDATE products SET total_view=? WHERE product_id=?");
+        	                                $statement->execute(array($total,$row['product_id']));
                                         ?>
                                     </td>
 

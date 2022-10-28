@@ -50,6 +50,7 @@ if (isset($_POST['signBtn'])) {
     <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./assets/vendor/feather-icons-web/feather.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="icon" href="./assets/img/logo-modified.png">
 </head>
 <style>
     body{

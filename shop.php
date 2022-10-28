@@ -154,22 +154,15 @@
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sorting</button>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#">Latest</a>
-                                    <a class="dropdown-item" href="#">Popularity</a>
-                                    <a class="dropdown-item" href="#">Best Rating</a>
-                                </div>
-                            </div>
-                            <div class="btn-group ml-2">
-                                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Showing</button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#">10</a>
-                                    <a class="dropdown-item" href="#">20</a>
-                                    <a class="dropdown-item" href="#">30</a>
+                                    <a class="dropdown-item" href="shop.php?id=<?php echo $_REQUEST['id'];?>&type=cat">Latest</a>
+                                    <a class="dropdown-item" href="shop.php?id=<?php echo $_REQUEST['id'];?>&type=cat&order_by=total_view">Popularity</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                 
+                
 
                 <?php
                         // Checking if any product is available or not
@@ -188,13 +181,21 @@
                     endfor;
 
                     if($count==0) {
-                        echo '<div class="pl_15">'."No product found".'</div>';
+                        echo '<div class="h4 ml-5 pl-4">'."No product found".'</div>';
                     } else {
                         for($i=0;$i<count($final_category_id);$i++) {
-                            $statement = $conn->prepare("SELECT * FROM products WHERE category_id=?");
-                            $statement->execute(array($final_category_id[$i]));
-                            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-                            foreach ($result as $row) {
+                            if(isset($_REQUEST['order_by'])){
+                                $ordercol = $_REQUEST['order_by'];
+                                $statement = $conn->prepare("SELECT * FROM products WHERE category_id=? ORDER BY $ordercol DESC");
+                                $statement->execute(array($final_category_id[$i]));
+                                $result22 = $statement->fetchAll(PDO::FETCH_ASSOC);
+                            }else{
+                                $statement = $conn->prepare("SELECT * FROM products WHERE category_id=? ORDER BY product_id DESC");
+                                $statement->execute(array($final_category_id[$i]));
+                                $result22 = $statement->fetchAll(PDO::FETCH_ASSOC);
+                            }
+                            
+                            foreach ($result22 as $row) {
                 ?>
 
                 <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
@@ -243,7 +244,7 @@
                     };
                 ?>
 
-                <div class="col-12">
+                <!-- <div class="col-12">
                     <nav>
                         <ul class="pagination justify-content-center">
                         <li class="page-item disabled"><a class="page-link" href="#">Previous</span></a></li>
@@ -253,7 +254,7 @@
                         <li class="page-item"><a class="page-link" href="#">Next</a></li>
                         </ul>
                     </nav>
-                </div>
+                </div> -->
             </div>
         </div>
         <!-- Shop Product End -->

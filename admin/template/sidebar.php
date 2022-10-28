@@ -22,19 +22,27 @@
                     </span>
             <span class="font-weight-bolder h4 mb-0 text-uppercase text-dark">F-tech</span>
         </div>
-        <button class="hide-sidebar-btn btn btn-light d-block d-lg-none">
+        <button class="hide-sidebar-btn  btn btn-light d-block d-lg-none">
             <i class="feather-x text-dark" style="font-size: 2em;"></i>
         </button>
     </div>
     <div class="nav-menu">
         <ul>
-        <li class="menu-spacer"></li>
+            <li class="menu-spacer"></li>
 
             <li class="menu-item">
                 <a href="<?php echo $url.'/'.ADMIN_URL; ?>index.php" class="menu-item-link">
                     <span>
                         <i class="feather-home"></i>
                         Dashboard
+                    </span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="<?php echo $url; ?>/index.php" class="menu-item-link">
+                    <span>
+                        <i class="feather-arrow-right-circle"></i>
+                        Go Site
                     </span>
                 </a>
             </li>

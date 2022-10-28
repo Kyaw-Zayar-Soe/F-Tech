@@ -1,13 +1,13 @@
      <nav class="col-2 col-xl-3 shadow-sm rounded-left bg-dark pr-3" style="height:500px ;">
             <!-- Admin Name -->
         <h1 class="h4 py-3 text-center text-primary">
-            <i class="fas fa-ghost mr-2"></i>
+            <i class="fas fa-shopping-cart mr-2"></i>
             <span class="d-none d-lg-inline text-uppercase">Hello welcome</span>
         </h1>
                 <!-- Nav list -->
         <div class="list-group text-center text-lg-left custom">
-            <span class="list-group-item disabled text-center d-none mb-2 d-lg-block rounded">
-                <small class="font-weight-bold text-muted">CONTROLS</small>
+            <span class="list-group-item disabled text-center d-none mb-2 d-lg-block rounded" style="background-color:#d0d0dc ;">
+                <small class="font-weight-bold text-muted h5">CONTROLS</small>
             </span>
             <a href="<?php echo $url; ?>/dashboard.php" class="post list-group-item mb-2 list-group-item-action menu-link rounded">
                 <i class="fas fa-home"></i>

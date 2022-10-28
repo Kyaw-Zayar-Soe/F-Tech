@@ -26,9 +26,11 @@
     <div class="container-fluid">
         <div class="row px-xl-5">
             <?php if(!isset($_SESSION['customer'])): ?>
+                    <div class="col justify-content-center align-items-center d-flex">
                     <p>
-                        <a href="login.php" class="btn btn-md btn-danger"><?php echo "Please login as customer to checkout"; ?></a>
+                        <a href="login.php" class="btn btn-lg btn-danger"><?php echo "Please login as customer to checkout"; ?></a>
                     </p>
+                    </div>
             <?php else: ?>
             <div class="col-lg-8">
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing Address</span></h5>

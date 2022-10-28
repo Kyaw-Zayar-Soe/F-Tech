@@ -92,16 +92,12 @@
                             <label for=""><i class="feather-mail text-primary"></i> Enter Phone No :</label>
                             <input type="text" name="phone" id="" value="<?php echo $_SESSION['customer']['customer_phone']; ?>" class="form__input form-control" required>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Choose Gender :</label>
-                            <input type="text" name="gender" id="" class="form__input form-control" >
-                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for=""><i class="feather-lock text-primary"></i> Enter Password :</label>
                             <div class="input-group">
-                                <input name="password" type="password" value="" class="input form-control" id="password" placeholder="*****" required="true" aria-label="password" aria-describedby="basic-addon1" />
+                                <input name="password" type="password" value="" class="form__input form-control" id="password" placeholder="*****" required="true" aria-label="password" aria-describedby="basic-addon1" />
                                 <div class="input-group-append">
                                     <span class="input-group" onclick="password_show_hide();">
                                     <i class="far fa-eye" id="show_eye"></i>
@@ -113,7 +109,7 @@
                         <div class="form-group col-md-6">
                             <label for=""><i class="feather-lock text-primary"></i> Retype-Password :</label>
                             <div class="input-group">
-                                <input name="rpassword" type="password" value="" class="input form-control" id="password" placeholder="*****" required="true" aria-label="password" aria-describedby="basic-addon1" />
+                                <input name="rpassword" type="password" value="" class="form__input form-control" id="password" placeholder="*****" required="true" aria-label="password" aria-describedby="basic-addon1" />
                                 <div class="input-group-append">
                                     <span class="input-group" onclick="password_show_hide();">
                                     <i class="far fa-eye" id="show_eye"></i>

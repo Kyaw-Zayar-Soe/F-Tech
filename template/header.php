@@ -76,6 +76,7 @@ foreach ($result as $row) {
     <link href="./assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="./assets/feather-icons-web/feather.css">
+    <link rel="icon" href="./assets/img/logo-modified.png">
 
 
 </head>
@@ -93,13 +94,14 @@ foreach ($result as $row) {
                 </a>
             </div>
             <div class="col-lg-4 col-6 text-left">
-                <form action="">
+                <form action="search.php" method="GET">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <?php $csrf->echoInputField(); ?>
+                        <input type="text" class="form-control" placeholder="Search for products" name="search_text">
                         <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
+                            <button class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
-                            </span>
+                            </button>
                         </div>
                     </div>
                 </form>

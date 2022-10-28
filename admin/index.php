@@ -111,7 +111,9 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+</div>
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
         <div class="card mb-4 status-card" onclick="go('<?php echo $url.'/'.ADMIN_URL; ?>region_setting.php')">
             <div class="card-body">
                 <div class="row align-items-center">
@@ -128,7 +130,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
         <div class="card mb-4 status-card" onclick="go('<?php echo $url.'/'.ADMIN_URL; ?>order.php')">
             <div class="card-body">
                 <div class="row align-items-center">
@@ -145,7 +147,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
         <div class="card mb-4 status-card" onclick="go('<?php echo $url.'/'.ADMIN_URL; ?>order.php')">
             <div class="card-body">
                 <div class="row align-items-center">
@@ -162,7 +164,9 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+</div>
+<div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
         <div class="card mb-4 status-card" onclick="go('<?php echo $url.'/'.ADMIN_URL; ?>order.php')">
             <div class="card-body">
                 <div class="row align-items-center">
@@ -179,7 +183,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
         <div class="card mb-4 status-card" onclick="go('<?php echo $url.'/'.ADMIN_URL; ?>order.php')">
             <div class="card-body">
                 <div class="row align-items-center">
@@ -212,7 +216,7 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-6 col-xl-5">
+        <div class="col-12 col-md-8 col-xl-5">
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center p-3">
@@ -238,7 +242,6 @@
                     <table class="table table-hover p-2 rounded mt-3 mb-0">
                         <thead>
                             <tr>
-                                <th class="text-nowrap">#</th>
                                 <th class="text-nowrap">Customer Info</th>
                                 <th class="text-nowrap">Product</th>
                                 <th class="text-nowrap">Amount</th>
@@ -250,14 +253,13 @@
                         <tbody>
                         <?php
                             $i=0;
-                            $statement = $conn->prepare("SELECT * FROM payment LIMIT 6");
+                            $statement = $conn->prepare("SELECT * FROM payment ORDER BY id DESC LIMIT 6");
                             $statement->execute();
                             $result = $statement->fetchAll(PDO::FETCH_ASSOC);							
                             foreach ($result as $row) {
                             $i++;
             		    ?>
                                 <tr class="">
-                                    <td class="text-nowrap"><?php echo $i; ?></td>
                                     <td class="text-center"><?php echo $row['customer_name']; ?><br>
                                         <?php echo $row['customer_email']; ?>
                                     </td>
@@ -277,7 +279,7 @@
                                         <?php
                                             if($row['payment_status']=='Pending'){
                                         ?>
-                                            <a href="order_change_status.php?id=<?php echo $row['id']; ?>&task=Completed" class="text-decoration-none text-warning"><i class="fas fa-dot-circle fa-xs"></i> <?php echo $row['payment_status']; ?></i></a>
+                                            <a href="#" class="text-decoration-none text-warning"><i class="fas fa-dot-circle fa-xs"></i> <?php echo $row['payment_status']; ?></i></a>
                                         <?php
                                             }else{
                                         ?>
@@ -304,11 +306,6 @@
                         <p class="mb-0">Product Viewer</p>
                         <div class="">
                             <?php
-                                $currentUserId = $_SESSION['user']['id'];
-                                // $postTotal = countTable('posts'); $total_products
-                                // $currentUserPostTotal = countTable('posts',"user_id = $currentUserId");
-                                // $totalPercentage = ($currentUserPostTotal/$postTotal)*100;
-                                // $finalPercentage = floor($totalPercentage);
                             ?>
                             <small>Your products : <?php echo $total_products; ?></small>
                             <div class="progress" style="width: 300px;height: 15px;">
@@ -326,7 +323,7 @@
                         </thead>
                         <tbody>
                             <?php
-                                $statement = $conn->prepare("SELECT * FROM viewers LIMIT 5"); 
+                                $statement = $conn->prepare("SELECT * FROM viewers ORDER BY id DESC LIMIT 5"); 
                                 $statement->execute();
                                 $result = $statement->fetchAll(PDO::FETCH_ASSOC);						
                                 foreach ($result as $us) {
@@ -337,15 +334,9 @@
                                             if($us['customer_id']==0){
                                                 echo "Unknown";
                                             }else{
-                                                $statement = $conn->prepare("SELECT customer_id FROM viewers"); 
-                                                $statement->execute();
-                                                $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-                                                foreach($result as $cus){
-                                                    $cus['customer_id'];
-                                                }						
 
                                                 $statement = $conn->prepare("SELECT customer_name FROM customers WHERE customer_id=?"); 
-                                                $statement->execute(array($cus['customer_id']));
+                                                $statement->execute(array($us['customer_id']));
                                                 $result1 = $statement->fetchAll(PDO::FETCH_ASSOC);
                                                     foreach($result1 as $num){
                                                         echo $num['customer_name'];

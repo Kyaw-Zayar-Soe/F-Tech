@@ -31,6 +31,7 @@ if(!isset($_SESSION['user'])) {
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="icon" href="./assets/img/logo-modified.png">
 </head>
 <body>
 
@@ -46,7 +47,7 @@ if(!isset($_SESSION['user'])) {
                         <button class="show-sidebar-btn btn-sm btn btn-light d-block d-lg-none">
                             <i class="feather-menu text-dark" style="font-size: 2em;"></i>
                         </button>
-                        <form action="" method="post" class="d-none d-md-block">
+                        <form action="" method="post" class="d-none d-lg-block">
                             <div class="form-inline">
                                 <input type="text" class="form-control mr-2" placeholder="Search Everything">
                                 <button class="btn btn-light">
