@@ -9,6 +9,11 @@ if(isset($_POST['editProduct'])) {
         $error_message .= "You must have to select a category<br>";
     }
 
+    if(empty($_POST['brand_id'])) {
+        $valid = 0;
+        $error_message .= "You must have to select a brand<br>";
+    }
+
     if(empty($_POST['product_name'])) {
         $valid = 0;
         $error_message .= "Product name can not be empty<br>";
@@ -86,7 +91,8 @@ if(isset($_POST['editProduct'])) {
         							product_current_price=?, 
         							quantity=?,
         							description=?,
-        							category_id=?
+        							category_id=?,
+        							brand_id=?
 
         							WHERE product_id=?");
         	$statement->execute(array(
@@ -96,6 +102,7 @@ if(isset($_POST['editProduct'])) {
         							$_POST['quantity'],
         							$_POST['description'],
         							$_POST['category_id'],
+        							$_POST['brand_id'],
         							$_REQUEST['id']
         						));
         } else {
@@ -113,7 +120,8 @@ if(isset($_POST['editProduct'])) {
         							quantity=?,
         							photo=?,
         							description=?,
-        							category_id=?
+        							category_id=?,
+        							brand_id=?
 
         							WHERE product_id=?");
         	$statement->execute(array(
@@ -124,6 +132,7 @@ if(isset($_POST['editProduct'])) {
         							$final_name,
         							$_POST['description'],
         							$_POST['category_id'],
+        							$_POST['brand_id'],
         							$_REQUEST['id']
         						));
         }
@@ -173,6 +182,7 @@ if(!isset($_REQUEST['id'])) {
         $photo = $row['photo'];
         $description = $row['description'];
         $category_id = $row['category_id'];
+        $brand_id = $row['brand_id'];
     }
 
     $statement = $conn->prepare("SELECT * FROM categories WHERE category_id=?");
@@ -180,6 +190,13 @@ if(!isset($_REQUEST['id'])) {
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     foreach ($result as $row) {
         $category_name = $row['category_name'];
+    }
+
+    $statement = $conn->prepare("SELECT * FROM brands WHERE brand_id=?");
+    $statement->execute(array($brand_id));
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($result as $row) {
+        $brand_name = $row['brand_name'];
     }
 
 ?>
@@ -221,7 +238,7 @@ if(!isset($_REQUEST['id'])) {
 
                     <div class="form-group">
                         <label for="">Old Price</label>
-                        <input type="number" name="product_old_price" id="" class="form-control" value="<?php echo $product_old_price;?>" required>
+                        <input type="number" name="product_old_price" id="" class="form-control" value="<?php echo $product_old_price;?>">
                     </div>
                     
                     <div class="form-group">
@@ -237,12 +254,12 @@ if(!isset($_REQUEST['id'])) {
                     <div class="form-group">
                         <label for="">Choose Photo</label>
                         <div class="custom-file mb-2">
-                            <input type="file" class="custom-file-input" id="customFile" name="product_photo" required>
+                            <input type="file" class="custom-file-input" id="customFile" name="product_photo" >
                             <label class="custom-file-label" for="customFile">..........</label>
                         </div>
                         <div class="">
                             <img src="../assets/uploads/<?php echo $photo;?>" style="width:150px;" alt="">
-                            <input type="hidden" name="current_photo" id="customFile" value="<?php echo $photo; ?>"required>
+                            <input type="hidden" name="current_photo" id="customFile" value="<?php echo $photo; ?>">
                         </div>
                     </div>
                     
@@ -256,13 +273,42 @@ if(!isset($_REQUEST['id'])) {
         </div>
     </div>
     <div class="col-12 col-xl-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                     <h4 class="mb-0">
+                         <i class="feather-wind text-primary"></i> Select Brand
+                     </h4>
+                     <a href="brand.php" class="btn btn-outline-primary">
+                         <i class="feather-list"></i>
+                     </a>
+                </div>
+                    <hr>
+                    <div class="form-group">
+                    <select class="custom-select custom-select" name="brand_id" required>
+                        <option disabled>Select the brand</option>
+                            <?php
+                            $statement = $conn->prepare("SELECT * FROM brands");
+                            $statement->execute();
+                            $result = $statement->fetchAll(PDO::FETCH_ASSOC);	
+                            foreach ($result as $row) {
+                                ?>
+                                <option value="<?php echo $row['brand_id']; ?>"  <?php echo $row['brand_id'] == $brand_id ? 'selected' : ''; ?>><?php echo $row['brand_name']; ?></option>
+                                <?php
+                            }
+                            ?>
+                    </select>
+
+                    </div>  
+            </div>
+        </div>
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                      <h4 class="mb-0">
                          <i class="feather-layers text-primary"></i> Select Category
                      </h4>
-                     <a href="category_add.php" class="btn btn-outline-primary">
+                     <a href="category.php" class="btn btn-outline-primary">
                          <i class="feather-list"></i>
                      </a>
                 </div>

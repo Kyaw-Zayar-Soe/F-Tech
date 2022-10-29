@@ -189,7 +189,6 @@
                         <input type="hidden" name="product_name" value="<?php echo $product_name; ?>">
                         <input type="hidden" name="photo" value="<?php echo $photo; ?>">
 
-                        <p class="mb-4"><?php echo $description; ?></p>
                         
                         <div class="d-flex align-items-center mb-4 pt-2">
 

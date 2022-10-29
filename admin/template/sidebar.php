@@ -4,6 +4,10 @@
 	$statement->execute();
 	$total_categories = $statement->rowCount();
 
+	$statement = $conn->prepare("SELECT * FROM brands");
+	$statement->execute();
+	$total_brands = $statement->rowCount();
+
 	$statement = $conn->prepare("SELECT * FROM products");
 	$statement->execute();
 	$total_products = $statement->rowCount();
@@ -18,7 +22,7 @@
     <div class="d-flex justify-content-between align-items-center py-2 mt-3 nav-brand">
         <div class="d-flex align-items-center">
                     <span class="bg-dark p-2 rounded d-flex justify-content-center align-items-center mr-2">
-                        <i class="feather-feather text-white h4 mb-0"></i>
+                        <i class="fas fa-ghost text-white h4 mb-0"></i>
                     </span>
             <span class="font-weight-bolder h4 mb-0 text-uppercase text-dark">F-tech</span>
         </div>
@@ -65,10 +69,13 @@
             </li>
             
             <li class="menu-item">
-                <a href="<?php echo $url.'/'.ADMIN_URL; ?>category_add.php" class="menu-item-link">
+                <a href="<?php echo $url.'/'.ADMIN_URL; ?>brand.php" class="menu-item-link">
                     <span>
-                        <i class="feather-layers"></i>
-                            New Category
+                        <i class="feather-wind"></i>
+                            Manage Brand
+                    </span>
+                    <span class="badge badge-pill bg-white shadow-sm text-primary p-1">
+                        <?php echo $total_brands; ?>
                     </span>
                 </a>
             </li>
@@ -84,18 +91,11 @@
                     </span>
                 </a>
             </li>
-            <li class="menu-item">
-                <a href="<?php echo $url.'/'.ADMIN_URL; ?>product_add.php" class="menu-item-link">
-                            <span>
-                                <i class="feather-list"></i>
-                                    New Product
-                            </span>
-                </a>
-            </li>
+           
             <li class="menu-item">
                 <a href="<?php echo $url.'/'.ADMIN_URL; ?>order.php" class="menu-item-link">
                             <span>
-                                <i class="feather-list"></i>
+                                <i class="feather-shopping-bag"></i>
                                     Manage Order
                             </span>
                 </a>
@@ -110,8 +110,8 @@
             <li class="menu-item">
                 <a href="<?php echo $url.'/'.ADMIN_URL; ?>region_setting.php" class="menu-item-link ">
                             <span>
-                                <i class="feather-plus-circle"></i>
-                                 Shipping cost 
+                                <i class="feather-map-pin"></i>
+                                  Region 
                             </span>
                 </a>
             </li>

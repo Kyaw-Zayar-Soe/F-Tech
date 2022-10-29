@@ -145,7 +145,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <h4 class="mb-0">
-                        <i class="feather-list text-primary"></i> Order List
+                        <i class="feather-shopping-bag text-primary"></i> Order List
                     </h4>
                     <div class="">
                         <a href="#" class="btn btn-outline-secondary full-screen-btn">

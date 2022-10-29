@@ -9,6 +9,11 @@ if (isset($_POST['addProduct'])) {
         $error_message .= "You must have to select a category<br>";
     }
 
+    if (empty($_POST['brand_id'])) {
+        $valid = 0;
+        $error_message .= "You must have to select a brand<br>";
+    }
+
     if (empty($_POST['product_name'])) {
         $valid = 0;
         $error_message .= "Product name can not be empty<br>";
@@ -62,8 +67,9 @@ if (isset($_POST['addProduct'])) {
 									    photo,
 										description,
 										total_view,
-										category_id
-									) VALUES (?,?,?,?,?,?,?,?)");
+										category_id,
+                                        brand_id
+									) VALUES (?,?,?,?,?,?,?,?,?)");
         $statement->execute(array(
             $_POST['product_name'],
             $_POST['product_old_price'],
@@ -72,7 +78,8 @@ if (isset($_POST['addProduct'])) {
             $final_name,
             $_POST['description'],
             0,
-            $_POST['category_id']
+            $_POST['category_id'],
+            $_POST['brand_id']
         ));
 
         $success_message = 'Product is added successfully.';
@@ -93,7 +100,7 @@ if (isset($_POST['addProduct'])) {
 </div>
 
 <?php if ($error_message) : ?>
-    <div class="alert alert-warning">
+    <div class="alert alert-warning m-2">
         <p>
             <?php echo $error_message; ?>
         </p>
@@ -130,7 +137,7 @@ if (isset($_POST['addProduct'])) {
 
                     <div class="form-group">
                         <label for="">Old Price</label>
-                        <input type="number" name="product_old_price" id="" class="form-control" required>
+                        <input type="number" name="product_old_price" id="" class="form-control" >
                     </div>
                     
                     <div class="form-group">
@@ -162,13 +169,42 @@ if (isset($_POST['addProduct'])) {
         </div>
     </div>
     <div class="col-12 col-xl-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                     <h4 class="mb-0">
+                         <i class="feather-wind text-primary"></i> Select Brand
+                     </h4>
+                     <a href="brand.php" class="btn btn-outline-primary">
+                         <i class="feather-list"></i>
+                     </a>
+                </div>
+                    <hr>
+                    <div class="form-group">
+                    <select class="custom-select custom-select" name="brand_id" required>
+                        <option disabled selected>Select the brand</option>
+                            <?php
+                            $statement = $conn->prepare("SELECT * FROM brands");
+                            $statement->execute();
+                            $result = $statement->fetchAll(PDO::FETCH_ASSOC);	
+                            foreach ($result as $row) {
+                                ?>
+                                <option value="<?php echo $row['brand_id']; ?>"><?php echo $row['brand_name']; ?></option>
+                                <?php
+                            }
+                            ?>
+                    </select>
+
+                    </div>  
+            </div>
+        </div>
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                      <h4 class="mb-0">
                          <i class="feather-layers text-primary"></i> Select Category
                      </h4>
-                     <a href="category_add.php" class="btn btn-outline-primary">
+                     <a href="category.php" class="btn btn-outline-primary">
                          <i class="feather-list"></i>
                      </a>
                 </div>

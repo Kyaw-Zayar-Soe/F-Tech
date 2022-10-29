@@ -25,7 +25,7 @@
                     <hr>
                 <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Your Name :</label>
+                            <label for=""><i class="feather-user text-primary"></i> Your Name :</label>
                             <?php echo $_SESSION['customer']['customer_name']; ?>
                         </div>
                         <div class="form-group col-md-6">
@@ -35,7 +35,7 @@
                 </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Phone No :</label>
+                            <label for=""><i class="feather-phone text-primary"></i> Phone No :</label>
                             <?php echo $_SESSION['customer']['customer_phone']; ?>
                         </div>
                     </div>

@@ -18,7 +18,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <h4 class="mb-0">
-                        <i class="feather-list text-primary"></i> Category List
+                        <i class="feather-layers text-primary"></i> Category List
                     </h4>
                     <div class="">
                         <a href="category_add.php" class="btn btn-outline-primary">
@@ -56,7 +56,7 @@
 
                                     <td class="text-nowrap">
 
-                                        <a href="#" data-href="category_delete.php?id=<?php echo $row['category_id'] ?>" data-toggle="modal" data-target="#confirm-delete" class="btn btn-outline-danger btn-sm">
+                                        <a href="#" data-href="category_delete.php?id=<?php echo $row['category_id']; ?>" data-toggle="modal" data-target="#confirm-delete" class="btn btn-outline-danger btn-sm">
                                             <i class="feather-trash-2 fa-fw"></i></a>
 
                                         <a href="category_edit.php?id=<?php echo $row['category_id'] ?>" class="btn btn-outline-warning btn-sm">
@@ -88,7 +88,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a href="category_delete.php?id=<?php echo $row['category_id'] ?>" class="btn btn-danger text-white btn-ok">Delete</a>
+                <a class="btn btn-danger text-white btn-ok">Delete</a>
             </div>
         </div>
     </div>

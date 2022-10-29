@@ -99,39 +99,39 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Full Name :</label>
+                            <label for=""><i class="feather-user text-primary"></i> Full Name :</label>
                             <input type="text" name="bname" id="" value="<?php echo $_SESSION['customer']['customer_b_name']; ?>" class="form__input form-control" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Full Name :</label>
+                            <label for=""><i class="feather-user text-primary"></i> Full Name :</label>
                             <input type="text" name="sname" id="" value="<?php echo $_SESSION['customer']['customer_s_name']; ?>" class="form__input form-control" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Phone No :</label>
+                            <label for=""><i class="feather-phone text-primary"></i> Phone No :</label>
                             <input type="text" name="bphone" id="" value="<?php echo $_SESSION['customer']['customer_b_phone']; ?>" class="form__input form-control" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Phone No :</label>
+                            <label for=""><i class="feather-phone text-primary"></i> Phone No :</label>
                             <input type="text" name="sphone" id="" value="<?php echo $_SESSION['customer']['customer_s_phone']; ?>" class="form__input form-control" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Address :</label>
+                            <label for=""><i class="far fa-address-book text-primary"></i> Address :</label>
                             <textarea name="baddress" class="form-control form__input" cols="30" rows="10" style="height:70px;" required><?php echo $_SESSION['customer']['customer_b_address']; ?></textarea>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Address :</label>
+                            <label for=""><i class="far fa-address-book text-primary"></i> Address :</label>
                             <textarea name="saddress" class="form-control form__input" cols="30" rows="10" style="height:70px;" required><?php echo $_SESSION['customer']['customer_s_address']; ?></textarea>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Region :</label>
+                            <label for=""><i class="fas fa-city text-primary"></i> Region :</label>
                                 <select name="bregion" class="form-control" >
-                                <option value="0" selected disabled>Select Region</option>
+                                <!-- <option value="0" selected disabled>Select Region</option> -->
                                     <?php
                                         $statement = $conn->prepare("SELECT * FROM region");
                                         $statement->execute();
@@ -146,16 +146,16 @@
                             <!-- <input type="text" name="bregion" id="" value="" class="form__input form-control" > -->
                         </div>
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Region :</label>
+                            <label for=""><i class="fas fa-city text-primary"></i> Region :</label>
                                 <select name="sregion" class="form-control" >
-                                    <option value="0" selected disabled>Select Region</option>
+                                    <!-- <option value="0" selected disabled>Select Region</option> -->
                                     <?php
                                         $statement = $conn->prepare("SELECT * FROM region");
                                         $statement->execute();
                                         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
                                         foreach ($result as $row) {
                                     ?>
-                                        <option value="<?php echo $row['region_id']; ?>" <?php if($row['region_id'] == $_SESSION['customer']['customer_s_region']) {echo 'selected';} ?>><?php echo $row['region_name']; ?></option>
+                                        <option value="<?php echo $row['region_id']; ?>" <?php if($row['region_id'] == $_SESSION['customer']['customer_s_region']) {echo 'selected';} ?> required><?php echo $row['region_name']; ?></option>
                                     <?php
                                     }
                                     ?>
@@ -164,31 +164,31 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> City :</label>
+                            <label for=""><i class="fas fa-city text-primary"></i> City :</label>
                             <input type="text" name="bcity" id="" value="<?php echo $_SESSION['customer']['customer_b_city']; ?>" class="form__input form-control" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> City :</label>
+                            <label for=""><i class="fas fa-city text-primary"></i> City :</label>
                             <input type="text" name="scity" id="" value="<?php echo $_SESSION['customer']['customer_s_city']; ?>" class="form__input form-control" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Township :</label>
+                            <label for=""><i class="fas fa-city text-primary"></i> Township :</label>
                             <input type="text" name="btownship" id="" value="<?php echo $_SESSION['customer']['customer_b_township']; ?>" class="form__input form-control" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Township :</label>
+                            <label for=""><i class="fas fa-city text-primary"></i> Township :</label>
                             <input type="text" name="stownship" id="" value="<?php echo $_SESSION['customer']['customer_s_township']; ?>" class="form__input form-control" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                                <label for=""><i class="feather-mail text-primary"></i> Zip Code :</label>
+                                <label for=""><i class="feather-code text-primary"></i> Zip Code :</label>
                                 <input type="text" class="form__input form-control" name="bzip" value="<?php echo $_SESSION['customer']['customer_b_zip']; ?>" required>
                         </div>
                         <div class="form-group col-md-6">
-                                <label for=""><i class="feather-mail text-primary"></i> Zip Code :</label>
+                                <label for=""><i class="feather-code text-primary"></i> Zip Code :</label>
                                 <input type="text" class="form__input form-control" name="szip" value="<?php echo $_SESSION['customer']['customer_s_zip']; ?>" required>
                         </div>
                     </div>

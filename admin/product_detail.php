@@ -145,19 +145,13 @@ if(!isset($_REQUEST['id'])) {
                                         if($us['customer_id']==0){
                                             echo "Unknown";
                                         }else{
-                                            $statement = $conn->prepare("SELECT customer_id FROM viewers WHERE product_id=?"); 
-                                            $statement->execute(array($_REQUEST['id']));
-                                            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-                                            foreach($result as $cus){
-                                                $cus['customer_id'];
-                                            }						
-
-                                            $statement = $conn->prepare("SELECT customer_name FROM customers WHERE customer_id=?"); 
-                                            $statement->execute(array($cus['customer_id']));
-                                            $result1 = $statement->fetchAll(PDO::FETCH_ASSOC);
-                                                foreach($result1 as $num){
-                                                    echo $num['customer_name'];
-                                                }
+                                                $statement = $conn->prepare("SELECT customer_name FROM customers WHERE customer_id=?"); 
+                                                $statement->execute(array($us['customer_id']));
+                                                $result1 = $statement->fetchAll(PDO::FETCH_ASSOC);
+                                                    foreach($result1 as $num){
+                                                        $name =  $num['customer_name'];
+                                                        echo $name;		
+                                                    }
                                         }                                                                       
                                     ?></td>
                                 <td ><?php echo $us['device']; ?></td>

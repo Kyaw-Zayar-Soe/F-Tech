@@ -6,6 +6,10 @@
 	$statement->execute();
 	$total_categories = $statement->rowCount();
 
+	$statement = $conn->prepare("SELECT * FROM brands");
+	$statement->execute();
+	$total_brands = $statement->rowCount();
+
 	$statement = $conn->prepare("SELECT * FROM products");
 	$statement->execute();
 	$total_products = $statement->rowCount();
@@ -95,6 +99,26 @@
         </div>
     </div>
     <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 status-card" onclick="go('<?php echo $url.'/'.ADMIN_URL; ?>brand.php')">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <i class="feather-wind h1 text-primary"></i>
+                    </div>
+                    <div class="col-9">
+                        <p class="mb-1 h4 font-weight-bolder">
+                            <span class="counter-up"><?php echo $total_brands; ?></span>
+                        </p>
+                        <p class="mb-0 text-black-50">Total Brand</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
         <div class="card mb-4 status-card" onclick="go('<?php echo $url.'/'.ADMIN_URL; ?>customer.php')">
             <div class="card-body">
                 <div class="row align-items-center">
@@ -111,31 +135,12 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-        <div class="card mb-4 status-card" onclick="go('<?php echo $url.'/'.ADMIN_URL; ?>region_setting.php')">
-            <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col-3">
-                        <i class="feather-users h1 text-primary"></i>
-                    </div>
-                    <div class="col-9">
-                        <p class="mb-1 h4 font-weight-bolder">
-                            <span class="counter-up"><?php echo $available_region; ?></span>
-                        </p>
-                        <p class="mb-0 text-black-50">Available Region</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="col-12 col-md-6 col-lg-6 col-xl-4">
         <div class="card mb-4 status-card" onclick="go('<?php echo $url.'/'.ADMIN_URL; ?>order.php')">
             <div class="card-body">
                 <div class="row align-items-center">
                     <div class="col-3">
-                        <i class="feather-users h1 text-primary"></i>
+                        <i class="fas fa-clipboard-list h1 text-primary"></i>
                     </div>
                     <div class="col-9">
                         <p class="mb-1 h4 font-weight-bolder">
@@ -152,7 +157,7 @@
             <div class="card-body">
                 <div class="row align-items-center">
                     <div class="col-3">
-                        <i class="feather-users h1 text-primary"></i>
+                        <i class="feather-check-square h1 text-primary"></i>
                     </div>
                     <div class="col-9">
                         <p class="mb-1 h4 font-weight-bolder">
@@ -164,14 +169,29 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
+        <div class="card mb-4 status-card" onclick="go('<?php echo $url.'/'.ADMIN_URL; ?>region_setting.php')">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <i class="feather-map-pin h1 text-primary"></i>
+                    </div>
+                    <div class="col-9">
+                        <p class="mb-1 h4 font-weight-bolder">
+                            <span class="counter-up"><?php echo $available_region; ?></span>
+                        </p>
+                        <p class="mb-0 text-black-50">Available Region</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-12 col-md-6 col-lg-6 col-xl-4">
         <div class="card mb-4 status-card" onclick="go('<?php echo $url.'/'.ADMIN_URL; ?>order.php')">
             <div class="card-body">
                 <div class="row align-items-center">
                     <div class="col-3">
-                        <i class="feather-users h1 text-primary"></i>
+                        <i class="feather-truck h1 text-primary"></i>
                     </div>
                     <div class="col-9">
                         <p class="mb-1 h4 font-weight-bolder">
@@ -188,7 +208,7 @@
             <div class="card-body">
                 <div class="row align-items-center">
                     <div class="col-3">
-                        <i class="feather-users h1 text-primary"></i>
+                        <i class="far fa-check-circle h1 text-primary"></i>
                     </div>
                     <div class="col-9">
                         <p class="mb-1 h4 font-weight-bolder">

@@ -3,8 +3,7 @@
 <?php
 if(isset($_POST['update'])) {
 
-	if($_SESSION['user']['role'] == 'Admin') {
-
+    if($_SESSION['user']['role'] == 'Admin'){
 		$valid = 1;
 
 	    if(empty($_POST['name'])) {
@@ -15,33 +14,34 @@ if(isset($_POST['update'])) {
 	    if(empty($_POST['email'])) {
 	        $valid = 0;
 	        $error_message .= 'Email address can not be empty<br>';
-	    } else {
-	    	if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
-		        $valid = 0;
-		        $error_message .= 'Email address must be valid<br>';
-		    } else {
-		    	// current email address that is in the database
-		    	$statement = $conn->prepare("SELECT * FROM admin WHERE id=?");
-				$statement->execute(array($_SESSION['user']['id']));
-				$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-				foreach($result as $row) {
-					$current_email = $row['email'];
-				}
+            } else {
+                if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
+                    $valid = 0;
+                    $error_message .= 'Email address must be valid<br>';
+                } else {
+                    // current email address that is in the database
+                    $statement = $conn->prepare("SELECT * FROM admin WHERE id=?");
+                    $statement->execute(array($_SESSION['user']['id']));
+                    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+                    foreach($result as $row) {
+                        $current_email = $row['email'];
+                    }
 
-		    	$statement = $conn->prepare("SELECT * FROM admin WHERE email=? and email!=?");
-		    	$statement->execute(array($_POST['email'],$current_email));
-		    	$total = $statement->rowCount();							
-		    	if($total) {
-		    		$valid = 0;
-		        	$error_message .= 'Email address already exists<br>';
-		    	}
-		    }
+                    $statement = $conn->prepare("SELECT * FROM admin WHERE email=? and email!=?");
+                    $statement->execute(array($_POST['email'],$current_email));
+                    $total = $statement->rowCount();							
+                    if($total) {
+                        $valid = 0;
+                        $error_message .= 'Email address already exists<br>';
+                    }
+                }
 	    }
 
 	    if($valid == 1) {
 			
 			$_SESSION['user']['name'] = $_POST['name'];
 	    	$_SESSION['user']['email'] = $_POST['email'];
+            $_SESSION['user']['phone'] = $_POST['phone'];
 
 			// updating the database
 			$statement = $conn->prepare("UPDATE admin SET name=?, email=?, phone=? WHERE id=?");
@@ -50,10 +50,10 @@ if(isset($_POST['update'])) {
 	    	$success_message = 'User Information is updated successfully.';
 	    }
 
-        if( empty($_POST['password']) || empty($_POST['rpassword']) ) {
-            $valid = 0;
-            $error_message .= "Password can not be empty<br>";
-        }
+        // if( empty($_POST['password']) || empty($_POST['rpassword']) ) {
+        //     $valid = 0;
+        //     $error_message .= "Password can not be empty<br>";
+        // }
     
         if( !empty($_POST['password']) && !empty($_POST['rpassword']) ) {
             if($_POST['password'] != $_POST['rpassword']) {
@@ -70,9 +70,14 @@ if(isset($_POST['update'])) {
             $statement = $conn->prepare("UPDATE admin SET password=? WHERE id=?");
             $statement->execute(array(md5($_POST['password']),$_SESSION['user']['id']));
     
-            $success_message = 'User Password is updated successfully.';
+            $success_message = 'User Information is updated successfully.';
         }
+    }
+}
 
+if(isset($_POST['upd'])){
+        $valid = 1;
+        
         $path = $_FILES['photo']['name'];
         $path_tmp = $_FILES['photo']['tmp_name'];
 
@@ -84,7 +89,6 @@ if(isset($_POST['update'])) {
                 $error_message .= 'You must have to upload jpg, jpeg, gif or png file<br>';
             }
         }
-
         if($valid == 1) {
 
             // removing the existing photo
@@ -102,20 +106,10 @@ if(isset($_POST['update'])) {
             $statement->execute(array($final_name,$_SESSION['user']['id']));
 
             $success_message = 'User Photo is updated successfully.';
-            
-    }
+        }
 
 	}
-	else {
-		$_SESSION['user']['phone'] = $_POST['phone'];
 
-		// updating the database
-		$statement = $conn->prepare("UPDATE admin SET phone=? WHERE id=?");
-		$statement->execute(array($_POST['phone'],$_SESSION['user']['id']));
-
-		$success_message = 'User Information is updated successfully.';	
-	}
-}
 
 
 ?>
@@ -144,6 +138,20 @@ if(isset($_POST['update'])) {
         $role      = $row['role'];
     }
 ?>
+<?php if ($error_message) : ?>
+    <div class="alert alert-warning">
+        <p>
+            <?php echo $error_message; ?>
+        </p>
+    </div>
+<?php endif; ?>
+
+<?php if ($success_message) : ?>
+    <div class="alert alert-success">
+
+        <p><?php echo $success_message; ?></p>
+    </div>
+<?php endif; ?>
 
 <form class="row" method="post" enctype="multipart/form-data">
     <div class="col-12 col-xl-8">
@@ -195,18 +203,19 @@ if(isset($_POST['update'])) {
                     
                     <div class="form-group">
                         <label for="">phone : </label>
-                        <input type="text" name="phone" id="" class="form-control" value="<?php echo $phone; ?>" required>
+                        <input type="text" name="phone" id="" class="form-control" value="<?php echo $phone; ?>" >
                     </div>
                     
                     <div class="form-group">
                         <label for="">New Password</label>
-                        <input type="password" name="password" id="" class="form-control" required>
+                        <input type="password" name="password" id="" class="form-control" >
                     </div>
 
                     <div class="form-group">
                         <label for="">Retype-Password</label>
-                        <input type="password" name="rpassword" id="" class="form-control" required>
+                        <input type="password" name="rpassword" id="" class="form-control" >
                     </div>
+                    <button class="btn btn-primary" name="update">Update</button>             
 
             </div>
         </div>
@@ -235,13 +244,13 @@ if(isset($_POST['update'])) {
                         </div>
                         <label for="">Choose Photo</label>
                         <div class="custom-file mb-2">
-                            <input type="file" class="custom-file-input" id="customFile" name="photo" required>
+                            <input type="file" class="custom-file-input" id="customFile" name="photo" >
                             <label class="custom-file-label" for="customFile">..........</label>
                         </div>
                     </div>
 
                     <hr>
-                    <button class="btn btn-primary" name="update">Update</button>             
+                    <button class="btn btn-primary" name="upd">Update</button>             
             </div>
         </div>
     </div>

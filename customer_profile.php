@@ -79,7 +79,7 @@
                     <?php $csrf->echoInputField(); ?> 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Enter Full Name :</label>
+                            <label for=""><i class="feather-user text-primary"></i> Enter Full Name :</label>
                             <input type="text" name="name" id="" value="<?php echo $_SESSION['customer']['customer_name']; ?>" class="form__input form-control" required>
                         </div>
                         <div class="form-group col-md-6">
@@ -89,7 +89,7 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for=""><i class="feather-mail text-primary"></i> Enter Phone No :</label>
+                            <label for=""><i class="feather-phone text-primary"></i> Enter Phone No :</label>
                             <input type="text" name="phone" id="" value="<?php echo $_SESSION['customer']['customer_phone']; ?>" class="form__input form-control" required>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                         </div> 
                     </div>
                     <div class="form-group">
-                        <label for=""><i class="feather-mail text-primary"></i> Address :</label>
+                        <label for=""><i class="far fa-address-book text-primary"></i> Address :</label>
                         <textarea name="address" class="form-control form__input" cols="30" rows="10" style="height:70px;"><?php echo $_SESSION['customer']['customer_address']; ?></textarea>
                     </div>
                     <div class="form-group pt-2 mb-0">

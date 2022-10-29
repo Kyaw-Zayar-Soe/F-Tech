@@ -61,7 +61,7 @@
         <div class="row px-xl-5">
 
         <?php
-            $statement = $conn->prepare("SELECT * FROM products ORDER BY total_view DESC");
+            $statement = $conn->prepare("SELECT * FROM products ORDER BY total_view DESC LIMIT 8");
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);                            
             foreach ($result as $row) {

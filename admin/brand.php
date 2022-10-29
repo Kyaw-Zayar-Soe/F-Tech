@@ -5,7 +5,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white mb-4">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Detail List</li>
+                <li class="breadcrumb-item active" aria-current="page">Brand List</li>
             </ol>
         </nav>
     </div>
@@ -16,13 +16,13 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <h4 class="mb-0">
-                        <i class="feather-map-pin text-primary"></i> Detail List
+                        <i class="feather-wind text-primary"></i> Brand List
                     </h4>
                     <div class="">
                         <a href="#" data-href="#" data-toggle="modal" data-target="#confirm-add" class="btn btn-outline-primary">
                             <i class="feather-plus-circle"></i>
                         </a>
-                        <?php include "region_add.php" ?>
+                        <?php include "brand_add.php" ?>
                         <a href="#" class="btn btn-outline-secondary full-screen-btn">
                             <i class="feather-maximize-2"></i>
                         </a>
@@ -43,14 +43,12 @@
                         <p><?php echo $success_message; ?></p>
                     </div>
                 <?php endif; ?>
-
                 <div class="table-responsive output">
                     <table class="table table-hover mt-3 mb-0">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Region Name</th>
-                                <th>Region Costs</th>
+                                <th>Brand</th>
                                 <th>Control</th>
                                 <th>Created_at</th>
 
@@ -59,24 +57,22 @@
                         <tbody>
                             <?php
                             $i = 0;
-                            $statement = $conn->prepare("SELECT * FROM region");
+                            $statement = $conn->prepare("SELECT * FROM brands");
                             $statement->execute();
                             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
                             foreach ($result as $row) {
                                 $i++;
-                                $id = $row['region_id'];
                             ?>
                                 <tr>
                                     <td class="text-nowrap"><?php echo $i; ?></td>
-                                    <td class="text-nowrap"><?php echo $row['region_name']; ?></td>
-                                    <td class="text-nowrap"><?php echo "$".$row['amount']; ?></td>
+                                    <td class="text-nowrap"><?php echo $row['brand_name']; ?></td>
 
                                     <td class="text-nowrap">
 
-                                        <a href="#" data-href="region_delete.php?id=<?php echo $row['region_id'] ?>" data-toggle="modal" data-target="#confirm-delete" class="btn btn-outline-danger btn-sm">
+                                        <a href="#" data-href="brand_delete.php?id=<?php echo $row['brand_id'] ?>" data-toggle="modal" data-target="#confirm-delete" class="btn btn-outline-danger btn-sm">
                                             <i class="feather-trash-2 fa-fw"></i></a>
 
-                                        <a href="region_edit.php?id=<?php echo $row['region_id'] ?>" data-id='<?php echo $row['region_id'] ?>' data-toggle="modal" data-target="#confirm-edit" rname="<?php echo $row['region_name']; ?>" ramount="<?php echo $row['amount']; ?>"  class="btn edit btn-outline-warning btn-sm">
+                                        <a href="brand_edit.php?id=<?php echo $row['brand_id'] ?>" data-id='<?php echo $row['brand_id']; ?>' data-toggle="modal" data-target="#confirm-edit" rname="<?php echo $row['brand_name']; ?>"  class="btn edit btn-outline-warning btn-sm">
                                             <i class="feather-edit-2 fa-fw"></i></a>
                                     </td>
                                     <td class="text-nowrap"><?php echo showTime($row['created_at']); ?></td>
@@ -103,7 +99,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a href="region_delete.php?id=<?php echo $row['region_id'] ?>" class="btn btn-danger text-white btn-ok">Delete</a>
+                <a href="brand_delete.php?id=<?php echo $row['brand_id'] ?>" class="btn btn-danger text-white btn-ok">Delete</a>
             </div>
         </div>
     </div>
@@ -113,23 +109,17 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel"><i class="feather-edit"></i>  Edit Region</h4>
+                <h4 class="modal-title" id="myModalLabel"><i class="feather-edit"></i>  Edit Brand</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
-                
-                <form class="row" action="region_edit.php" method="post">
+
+                <form class="row" action="brand_edit.php" method="post">
                     <input type="hidden" name="ii" id="rid" class="form-control" value="">
-                    <div class="form-group col-12 col-md-6">
-                        <label for="">Region Name :</label>
+                    <div class="form-group col-12">
+                        <label for="">Brand Name :</label>
                         <input type="text" name="name" id="name" class="form-control" value="" required>
                     </div>
-
-                    <div class="form-group col-12 col-md-6">
-                        <label for="">Amount :</label>
-                        <input type="text" name="amount" id="amount" class="form-control" value="" required>
-                    </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -150,11 +140,9 @@
     $('.edit').click(function(){
         var id = $(this).attr("data-id");
         var name = $(this).attr("rname");
-        var amount = $(this).attr("ramount");
 
         $("#rid").val(id);
         $("#name").val(name);
-        $("#amount").val(amount);
     })
 
 </script>

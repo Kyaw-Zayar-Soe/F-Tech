@@ -2,17 +2,17 @@
  <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-9 col-md-7 mb-5 pr-3 pr-xl-5">
-                <h5 class="text-secondary text-uppercase mb-4">Get In Touch</h5>
-                <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor. Rebum tempor no vero est magna amet no</p>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
+                <h5 class="text-secondary text-uppercase mb-4">Best Online Shopping Experience in Myanmar</h5>
+                <p class="mb-4">Welcome to F-TECH, your reliable and convenient Online Shopping Mall in Myanmar.</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Seikkantha Street, Yangon, Myanmar</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>ftechservices@market.com</p>
                 <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
             </div>
             <div class="col-lg-3 col-md-5">
                     
                     <!-- <div class="col-md-5 mb-5"> -->
                         <h5 class="text-secondary text-uppercase mb-4">Newsletter</h5>
-                        <p>Duo stet tempor ipsum sit amet magna ipsum tempor est</p>
+                        <p>Subscribe To Our Newsletter</p>
                         <form action="">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Your Email Address">
@@ -36,7 +36,7 @@
                 <p class="mb-md-0 text-center text-md-left text-secondary">
                     &copy; <a class="text-primary" href="#">Domain</a>. All Rights Reserved. Designed
                     by
-                    <a class="text-primary" href="https://htmlcodex.com">HTML Codex</a>
+                    <span class="text-primary">Kyaw Zayar</span>
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">
@@ -99,36 +99,22 @@ function confirmDelete()
 {
     return confirm("Sure you want to delete this data?");
 }
-// $(document).ready(function () {
 
     
-// 	advFieldsStatus = $('#advFieldsStatus').val();
+	advFieldsStatus = $('#advFieldsStatus').val();
 
-// 	$('#paypal_form').hide();
-// 	$('#stripe_form').hide();
-// 	$('#bank_form').hide();
+	$('#paypal_form').hide();
+	$('#stripe_form').hide();
+	$('#bank_form').hide();
 
-//     $('#advFieldsStatus').on('change',function() {
-//         advFieldsStatus = $('#advFieldsStatus').val();
-//         if ( advFieldsStatus == '' ) {
-//         	$('#paypal_form').hide();
-// 			$('#stripe_form').hide();
-// 			$('#bank_form').hide();
-//         } else if ( advFieldsStatus == 'PayPal' ) {
-//            	$('#paypal_form').show();
-// 			$('#stripe_form').hide();
-// 			$('#bank_form').hide();
-//         } else if ( advFieldsStatus == 'Stripe' ) {
-//            	$('#paypal_form').hide();
-// 			$('#stripe_form').show();
-// 			$('#bank_form').hide();
-//         } else if ( advFieldsStatus == 'Bank Deposit' ) {
-//         	$('#paypal_form').hide();
-// 			$('#stripe_form').hide();
-// 			$('#bank_form').show();
-//         }
-//     });
-// });
+    $('#advFieldsStatus').on('change',function() {
+        advFieldsStatus = $('#advFieldsStatus').val();
+        if ( advFieldsStatus == '' ) {
+        	$('#paypal_form').hide();
+        } else if ( advFieldsStatus == 'PayPal' ) {
+           	$('#paypal_form').show();
+        }
+    });
 
 
 // $(document).on('submit', '#stripe_form', function () {
