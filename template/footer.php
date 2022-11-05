@@ -72,11 +72,11 @@
 let currentPage = location.href;
     $(".menu-link").each(function () {
     let links = $(this).attr("href");
-    console.log(links)
     if(currentPage ==  links){
         $(this).addClass('active');
     }
 });
+
 function password_show_hide() {
   var x = document.getElementById("password");
   var show_eye = document.getElementById("show_eye");

@@ -9,11 +9,6 @@ if (isset($_POST['addProduct'])) {
         $error_message .= "You must have to select a category<br>";
     }
 
-    if (empty($_POST['brand_id'])) {
-        $valid = 0;
-        $error_message .= "You must have to select a brand<br>";
-    }
-
     if (empty($_POST['product_name'])) {
         $valid = 0;
         $error_message .= "Product name can not be empty<br>";
@@ -54,6 +49,11 @@ if (isset($_POST['addProduct'])) {
             $id = $row[10];
         }
 
+        if(isset($_POST['brand_id'])){
+            $_POST['brand_id'];
+        }else{
+            $_POST['brand_id'] = 0;
+        }
 
         $final_name = 'product-photo-' . $id . '.' . $ext;
         move_uploaded_file($path_tmp, '../assets/uploads/' . $final_name);
@@ -181,7 +181,7 @@ if (isset($_POST['addProduct'])) {
                 </div>
                     <hr>
                     <div class="form-group">
-                    <select class="custom-select custom-select" name="brand_id" required>
+                    <select class="custom-select custom-select" name="brand_id">
                         <option disabled selected>Select the brand</option>
                             <?php
                             $statement = $conn->prepare("SELECT * FROM brands");
