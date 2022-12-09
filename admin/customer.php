@@ -34,6 +34,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone No</th>
+                                <th>Address</th>
                                 <th>Control</th>
                                 <th>Created_at</th>
                             </tr>
@@ -53,6 +54,7 @@
                                  <td class="text-nowrap"><?php echo $us['customer_name']; ?></td>
                                  <td class="text-nowrap"><?php echo $us['customer_email']; ?></td>
                                  <td class="text-nowrap"><?php echo $us['customer_phone']; ?></td>
+                                 <td class="text-nowrap"><?php echo $us['customer_address']; ?></td>
                                  <td class="text-nowrap">
                                     <a href="#" data-href="customer_delete.php?id=<?php echo $us['customer_id'] ?>" data-toggle="modal" data-target="#confirm-delete" class="btn btn-outline-danger btn-sm">
                                     <i class="feather-trash-2 fa-fw"></i></a>

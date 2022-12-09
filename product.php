@@ -360,7 +360,7 @@
         <div class="row px-xl-5">
             
             <?php
-                $statement = $conn->prepare("SELECT * FROM products WHERE category_id=? AND product_id !=?");
+                $statement = $conn->prepare("SELECT * FROM products WHERE category_id=? AND product_id !=? LIMIT 4");
                 $statement->execute(array($category_id,$_REQUEST['id']));
                 $result3 = $statement->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($result3 as $row) {

@@ -90,7 +90,7 @@ if(!isset($_REQUEST['id'])) {
                     <?php echo showTime($time,'M j \a\t\ g:i A'); ?>
                 </div>
                 <div class="">
-                <div class="text-nowrap" style="width:82px;"><img src="../assets/uploads/<?php echo $photo; ?>" alt="" style="width:400px;height:400px;border-radius:5px;"></div><br>
+                <div class="text-nowrap" style="width:82px;"><img src="../assets/uploads/<?php echo $photo; ?>" alt="" style="width:350px;height:400px;border-radius:5px;"></div><br>
                     <div class="product_price">
                             <div style="font-size:14px;" class="font-weight-bold mb-2"><h4>Product Price</h4></div>
                             <span>

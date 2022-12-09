@@ -298,4 +298,5 @@
     </div>
     <!-- Checkout End -->
 
-<?php require "template/footer.php"; ?>
+<?php require "template/footer.php"; ?>  <!-- Replace "test" with your own sandbox Business account app client ID -->
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>

@@ -5,7 +5,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white mb-4">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Detail List</li>
+                <li class="breadcrumb-item active" aria-current="page">Region List</li>
             </ol>
         </nav>
     </div>
@@ -16,7 +16,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <h4 class="mb-0">
-                        <i class="feather-map-pin text-primary"></i> Detail List
+                        <i class="feather-map-pin text-primary"></i> Region List
                     </h4>
                     <div class="">
                         <a href="#" data-href="#" data-toggle="modal" data-target="#confirm-add" class="btn btn-outline-primary">

@@ -120,7 +120,7 @@
                 <a href="<?php echo $url.'/'.ADMIN_URL; ?>customer.php" class="menu-item-link ">
                             <span>
                                 <i class="feather-users"></i>
-                                 customer Manager 
+                                 Customer Manager 
                             </span>
                     <span class="badge badge-pill bg-white shadow-sm text-primary p-1">
                         <?php echo $total_customers; ?>
@@ -142,3 +142,5 @@
 
     </div>
 </div>
+
+ 

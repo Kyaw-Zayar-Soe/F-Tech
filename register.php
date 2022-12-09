@@ -138,7 +138,7 @@
     <div class="col-xl-5 col-md-8 col-sm-12">
         <div class="card pre m-5 rounded-0">
             <div class="card-header text-center text-primary">
-                <h4 class="pt-2 text-warning"> Welcome to Shop! Please Login.</h4>   
+                <h4 class="pt-2 text-warning"> Welcome to Shop! Please Register.</h4>   
             </div>
             <div class="card-body">
                 <?php

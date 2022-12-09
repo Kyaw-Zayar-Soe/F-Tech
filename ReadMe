@@ -1,0 +1,43 @@
+Hello, Welcome to F-tech Online Store.
+
+This README would normally document whatever steps are necessary to get your application up and running.
+
+First - If you want to use this system really online, you need to have domain and hosting.
+If you don't want to pay for domain and hosting, there are also places where you can host for free 
+without paying.
+
+Here we will show how to run this system on your pc.
+
+- You must first enter Development Environment(Xampp,Mamp,Lamp,Wamp) to use php code.
+   (We recommended to choose Xampp because it can be used in multiple platform like window, mac or linux.)
+- Install xampp and then move this code file under htdocs in xampp.
+
+
+    Login as Admin
+      gmail - mega@gmail.com
+	  password - mega
+- So, you can now start using this program. 
+ 
+For customer
+    gmail - kyaw@gmail.com
+    password - kyaw
+
+For customer paypal account -> mara@personal.example.com
+       pass      -> j<JI33v?
+
+
+For admin Paypal account -> megahito@gmail.com
+       pass       -> megahito
+
+
+For admin account -> mega@gmail.com
+      pass        -> mega
+
+
+
+
+DON'T FORGET TO CREATE A DATABASE NAMING "f-tech.sql" AND IMPORT THE SQL FILE AND RUN.
+WITHOUT THE DATABASE THE PROJECT WON'T RUN.
+
+	   #Enjoy	
+           #😉Thank you for using this system.
